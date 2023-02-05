@@ -1,0 +1,71 @@
+<html>
+  <head>
+    <title>Image Upload</title>
+<style>
+      body{
+            background-image:url({{ url_for('static', filename='back.jpg') }});
+            background-repeat: no-repeat;
+            background-attachment: fixed; 
+            background-size: 100% 100%;
+        }
+.dropzone {
+        width: 500px;
+        height: 500px;
+        margin: 0 auto; /* Center the element horizontally */
+        text-align: center;
+        border: 2px dashed #bbb;
+        text-align: center;
+        line-height: 500px;
+      }
+.center-element {
+        width: 50%; /* Set the width of the element */
+        margin: 0 auto; /* Center the element horizontally */
+        text-align: center; /* Center the content of the element */
+      }
+
+    </style>
+  </head>
+  <body>
+<h1 style="color:#D22B2B;">Text extraction and translation</h1>
+<br><br><br><br><br>
+<div class="center-element">
+<h4 style="color:#D22B2B;">Text language<h4>
+<form action="/val/" method="post">
+  <select name="dropdown_value">
+    <option value="en">english</option>
+    <option value="ta">tamil</option>
+    <option value="te">telugu</option>
+  </select>
+  <input type="submit" value="Submit">
+</form></div>
+<br><br>
+<div class="dropzone" ondrop="dropHandler(event)">
+      Drop files here
+    </div>
+    <script>
+      function dropHandler(event) {
+        event.preventDefault();
+        const files = event.dataTransfer.files;
+        const formData = new FormData();
+        for (const file of files) {
+          formData.append('file', file);
+        }
+        fetch('/drop-image', {
+          method: 'POST',
+          body: formData
+        }).then(response => {
+          console.log(response.text());
+        });
+      }
+    </script>
+<br><br><br>
+
+<div class="center-element">
+    <form action="/image_upload/" method = "post" enctype = "multipart/form-data" class="center">
+    <input type = "file" name = "image"  accept="image/*"  />
+  <label for="image">Select image:</label>
+    <input type = "submit"/>
+</form>
+</div>
+  </body>
+</html>

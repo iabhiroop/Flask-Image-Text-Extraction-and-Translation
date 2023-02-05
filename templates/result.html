@@ -1,0 +1,40 @@
+<html>
+  <head>
+    <title>result</title>
+<style>
+      body{
+            background-image:url({{ url_for('static', filename='back.jpg') }});
+            background-repeat: no-repeat;
+            background-attachment: fixed; 
+            background-size: 100% 100%;
+        }
+
+.center-element {
+        width: 50%; /* Set the width of the element */
+        margin: 0 auto; /* Center the element horizontally */
+        text-align: center; /* Center the content of the element */
+      }
+
+    </style>
+  </head>
+  <body>
+
+<h1 style="color:#D22B2B;">Text in the image</h1>
+<div class="center-element">
+<title>{% block title %}{% endblock %}</title> 
+
+{% for user in data %} 
+<h4 style="color:#D22B2B;">  {{ user }}</h4>
+{% endfor %}
+<br><br><br> 
+<form action="/trans/" method="post">
+  <select name="value">
+    <option value="en">english</option>
+    <option value="ta">tamil</option>
+    <option value="te">telugu</option>
+  </select>
+  <input type="submit" value="Submit">
+</form>
+</div>
+  </body>
+</html>
