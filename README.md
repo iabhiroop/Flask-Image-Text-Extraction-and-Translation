@@ -1,6 +1,16 @@
 # Flask_Text_Extraction_and_Translation
 
 #### This repository is a tool for extracting text from a given source and translating it to a target language.
+Usage:
+- Choose the language of the text. (By default it is english)
+- Choose to language if you need translation. (Default: english)
+- Upload image file.
+- Check preview and submit.
+
+![Screenshot 2023-07-30 204702](https://github.com/iabhiroop/Flask-Text-Extraction-and-Translation/assets/100859103/b64d27eb-ba4f-4e60-bbdf-77a27f8aff2f)
+- Obtain the results.
+
+![Screenshot 2023-07-30 204722](https://github.com/iabhiroop/Flask-Text-Extraction-and-Translation/assets/100859103/97050058-fc38-42f3-b83e-c3a0270fe3bb)
 
 ### Requirements
   - Python 3.x   
