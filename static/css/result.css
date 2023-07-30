@@ -1,0 +1,27 @@
+body {
+    background-image: url('back.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 100% 100%;
+}
+
+.center-element {
+    width: 50%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.center-div
+{
+    text-align: center;
+  position: relative;
+  margin: auto;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 60%;
+  height: auto;
+  background-color: #2dad62;
+  border-radius: 3px;
+}

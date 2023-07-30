@@ -1,71 +1,44 @@
 <html>
-  <head>
-    <title>Image Upload</title>
-<style>
-      body{
-            background-image:url({{ url_for('static', filename='back.jpg') }});
-            background-repeat: no-repeat;
-            background-attachment: fixed; 
-            background-size: 100% 100%;
-        }
-.dropzone {
-        width: 500px;
-        height: 500px;
-        margin: 0 auto; /* Center the element horizontally */
-        text-align: center;
-        border: 2px dashed #bbb;
-        text-align: center;
-        line-height: 500px;
-      }
-.center-element {
-        width: 50%; /* Set the width of the element */
-        margin: 0 auto; /* Center the element horizontally */
-        text-align: center; /* Center the content of the element */
-      }
 
-    </style>
-  </head>
-  <body>
-<h1 style="color:#D22B2B;">Text extraction and translation</h1>
-<br><br><br><br><br>
-<div class="center-element">
-<h4 style="color:#D22B2B;">Text language<h4>
-<form action="/val/" method="post">
-  <select name="dropdown_value">
-    <option value="en">english</option>
-    <option value="ta">tamil</option>
-    <option value="te">telugu</option>
-  </select>
-  <input type="submit" value="Submit">
-</form></div>
-<br><br>
-<div class="dropzone" ondrop="dropHandler(event)">
-      Drop files here
-    </div>
-    <script>
-      function dropHandler(event) {
-        event.preventDefault();
-        const files = event.dataTransfer.files;
-        const formData = new FormData();
-        for (const file of files) {
-          formData.append('file', file);
-        }
-        fetch('/drop-image', {
-          method: 'POST',
-          body: formData
-        }).then(response => {
-          console.log(response.text());
-        });
-      }
-    </script>
-<br><br><br>
+<head>
+  <title>Image Upload</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/image.css') }}">
+</head>
 
-<div class="center-element">
-    <form action="/image_upload/" method = "post" enctype = "multipart/form-data" class="center">
-    <input type = "file" name = "image"  accept="image/*"  />
-  <label for="image">Select image:</label>
-    <input type = "submit"/>
-</form>
-</div>
-  </body>
+<body>
+  <h1>Text extraction and translation</h1>
+  <br><br><br><br><br>
+  <div class="center-element">
+    <h4>Text language<h4>
+        <form action="/image_upload/" method="post" enctype="multipart/form-data" class="center">
+          <select name="from">
+            <option value="English" selected>From (English)</option>
+            {% for language in lng %}
+            <option value="{{ language }}">{{ language }}</option>
+            {% endfor %}
+          </select>
+          <select name="to">
+            <option value="English" selected>To (English)</option>
+            {% for language in lng %}
+            <option value="{{ language }}">{{ language }}</option>
+            {% endfor %}
+          </select>
+
+
+  </div>
+  <br><br>
+
+  <div class="center-element">
+
+    <input type="file" name="image" id="readUrl" accept="image/*" />
+    <label for="image">Select image:</label>
+    <input type="submit" />
+    </form>
+    <br><br>
+    <script src="{{ url_for('static', filename='js/image.js') }}"></script>
+    <img id="uploadedImage" src="#" alt="Uploaded Image" accept="image/png, image/jpeg" style="display:none;">
+
+  </div>
+</body>
+
 </html>
